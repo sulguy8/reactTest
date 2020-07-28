@@ -9,6 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       mode : 'read',
+      selected_content_id:2,
       subject : {title:'WEB', sub:'World Wide Web!'},
       welcome : {title:'Welcome', desc:'Hello. React!!'},
       contents : [
@@ -30,21 +31,19 @@ class App extends Component {
     }
     return (
       <div className="App">
-        {/* <Subject 
+        <Subject 
           title={ this.state.subject.title } 
-          sub={ this.state.subject.sub }>
-        </Subject> */}
-        <header>
-          <h1><a href="/" onClick={ function(e){
-            console.log(e);
-            e.preventDefault();
-            this.setState({
-              mode : 'welcome'
-            })
-          }.bind(this)}>{this.state.subject.title}</a></h1>
-          {this.state.subject.sub}
-        </header>
-        <TOC data={ this.state.contents }></TOC>
+          sub={ this.state.subject.sub }
+          onChangePage={function(){
+            this.setState({mode:'welcome'});
+          }.bind(this)}
+        >
+        </Subject>
+        <TOC 
+          onChangePage={function(){
+            this.setState({mode:'read'});
+            
+          }.bind(this)} data={ this.state.contents }></TOC>
         <Content title={ _title } desc={ _desc }></Content>
       </div>
     )
