@@ -10,6 +10,7 @@ class CreateContent extends Component {
               e.preventDefault();
               console.log(e.target);
               this.props.onSubmit(e.target.title.value, e.target.desc.value);
+              alert("Hello!")
             }.bind(this)}
           > 
             <p>
